@@ -678,7 +678,7 @@
                 isPaid: true,
                 paymentNote: { ru: "Оплата жетонами / картой парка.", uk: "Оплата жетонами / карткою парку." },
                 desc: { ru: "Огромный луна-парк напротив ТЦ 5M Migros. Самое большое колесо обозрения в Турции Heart of Antalya, американские горки.", uk: "Величезний луна-парк навпроти ТЦ 5M Migros. Найбільше колесо огляду в Туреччині Heart of Antalya, американські гірки." },
-                img: "https://ibb.co/TxFPQQxd",
+                img: "https://images.unsplash.com/photo-1560972550-aba3456b5564?auto=format&fit=crop&w=800&q=80",
                 mapQuery: "Aktur Park Konyaalti",
                 lat: 36.8870, lng: 30.6600
             },
@@ -1244,7 +1244,9 @@
             const loc = locationsData.find(l => l.id === locId);
             if (!loc) return;
 
-            document.getElementById('modalImg').src = loc.img;
+            const modalImgEl = document.getElementById('modalImg');
+            modalImgEl.onerror = function () { this.onerror = null; this.src = DEFAULT_FALLBACK_IMG; };
+            modalImgEl.src = loc.img;
             document.getElementById('modalTitle').innerText = getText(loc.name);
             document.getElementById('modalDistrict').innerText = getText(loc.districtName);
             document.getElementById('modalFormat').innerText = getText(loc.format);
